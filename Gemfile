@@ -10,6 +10,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem "bootstrap-sass"
+gem "quiet_assets"
+gem "simple_form"
+
 group :development, :test do
 
   gem 'byebug'
@@ -18,5 +22,5 @@ group :development, :test do
   gem "hirb"
   gem "interactive_editor"
   gem "awesome_print"
-  
+
 end

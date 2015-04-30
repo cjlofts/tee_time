@@ -6,7 +6,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="container">
+
+<nav>
+  <%= link_to "Home", root_path %>
+   |
+  <%= link_to "Golf Courses", golf_courses_path %>
+  |
+  <%= link_to "Games", games_path %>
+</nav>
+<%= flash[:notice] || flash[:alert] %>
 
 <%= yield %>
 

@@ -1,0 +1,9 @@
+<h1>Games Index Page</h1>
+
+<%= link_to "New Game", new_game_path %>
+<hr>
+<% @games.each do |game| %>
+  <p>Golf Course: <%= link_to game.golf_course.name, game %></p>
+  <p>Date / Time: <%= game.date %></p>
+  <hr>
+<% end %>
