@@ -14,6 +14,16 @@
   <%= link_to "Golf Courses", golf_courses_path %>
   |
   <%= link_to "Games", games_path %>
+   |
+  <% if current_user %>
+    <%= link_to "Logout", sessions_path("current"), method: "delete" %>
+     |
+    <%= link_to current_user.full_name, edit_user_path(current_user.id) %>
+  <% else %>
+    <%= link_to "Sign Up", new_user_path %>
+     |
+    <%= link_to "Log In", new_session_path %>
+  <% end %>
 </nav>
 <%= flash[:notice] || flash[:alert] %>
 
