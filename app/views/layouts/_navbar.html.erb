@@ -1,0 +1,22 @@
+<nav>
+  <div>
+    <div class="nav-left">
+      <div class="move-left"><%= link_to "Home", root_path %></div>
+      <div class="move-left"><%= link_to "Golf Courses", golf_courses_path %></div>
+      <div class="move-left"><%= link_to "Games", games_path %></div>
+    </div>
+    <div class="nav-centre">
+      <div>TeeTime</div>
+    </div>
+    <div class="nav-right">
+      <% if current_user %>
+        <div class="move-right">Welcome <%= link_to current_user.full_name, edit_user_path(current_user.id) %></div>
+        <div class="move-right"><%= link_to "Dashboard", games_path %></div>
+        <div class="move-right"><%= link_to "Logout", sessions_path("current"), method: "delete" %></div>
+      <% else %>
+        <div class="move-right"><%= link_to "Sign Up", new_user_path %></div>
+        <div class="move-right"><%= link_to "Log In", new_session_path %></div>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -11,7 +11,7 @@ class GolfCoursesController < ApplicationController
   end
 
   def create
-    @course = GolfCourse.new(course_params)
+    @course = current_user.golf_courses.new(course_params)
     if @course.save
       flash[:notice] = "Course Created Successfully!"
       redirect_to golf_course_path(@course)

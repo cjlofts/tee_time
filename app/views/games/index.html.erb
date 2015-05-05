@@ -1,9 +1,45 @@
 <h1>Games Index Page</h1>
 
 <%= link_to "New Game", new_game_path %>
+|
+<%= link_to "Join a Game", new_request_path %>
 <hr>
+<h3>Games I've Created</h3>
+
 <% @games.each do |game| %>
   <p>Golf Course: <%= link_to game.golf_course.name, game %></p>
-  <p>Date / Time: <%= game.date %></p>
+  <p><%= link_to "Game", game %> is at: <%= game.date %></p>
   <hr>
+<% end %>
+
+<h3>Games I've been Invited To</h3>
+
+<% @invited_games.each do |game| %>
+  <p>Golf Course: <%= link_to game.golf_course.name, game %></p>
+  <p><%= link_to "Game", game %> is at: <%= game.date %></p>
+  <hr>
+<% end %>
+
+<h3>Games I've Requested To Join</h3>
+
+<% @requested_games.each do |game| %>
+  <p>Golf Course: <%= link_to game.golf_course.name, game %></p>
+  <p><%= link_to "Game", game %> is at: <%= game.date %></p>
+  <hr>
+<% end %>
+
+<h3>All My Games</h3>
+
+<% @all_users_games.each do |game| %>
+  <p>Golf Course: <%= link_to game.golf_course.name, game %></p>
+  <p><%= link_to "Game", game %> is at: <%= game.date %></p>
+  <hr>
+<% end %>
+
+<h3>All Games</h3>
+
+<% @all_games.each do |game| %>
+<p>Golf Course: <%= link_to game.golf_course.name, game %></p>
+<p><%= link_to "Game", game %> is at: <%= game.date %></p>
+<hr>
 <% end %>

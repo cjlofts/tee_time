@@ -2,7 +2,24 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @games = Game.all
+    @games = current_user.games
+    @invited_games = current_user.invited_games
+    @requested_games = current_user.requested_games
+    @all_games = Game.all
+
+    @all_users_games = []
+
+    @games.each do |game|
+      @all_users_games.push(game)
+    end
+
+    @invited_games.each do |game|
+      @all_users_games.push(game)
+    end
+
+    @requested_games.each do |game|
+      @all_users_games.push(game)
+    end
   end
 
   def new
@@ -11,10 +28,12 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find params[:id]
+    @request = @game.requests.new
+    @invitation = @game.invitations.new
   end
 
   def create
-    @game = Game.new(game_params)
+    @game = current_user.games.new(game_params)
     if @game.save
       flash[:notice] = "Game created successfully!"
       redirect_to game_path(@game)

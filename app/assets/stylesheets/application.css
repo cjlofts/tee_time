@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+.nav-left {
+  float: left;
+}
+
+.nav-centre {
+  float: left;
+  text-align: center;
+}
+
+.nav-right {
+  float: right;
+}
+
+.move-left {
+  float:left;
+}
+
+.move-right {
+  float: right;
+}

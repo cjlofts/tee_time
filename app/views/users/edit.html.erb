@@ -1,0 +1,12 @@
+<h1>User Profile</h1>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :handicap %>
+  <%= f.input :age %>
+  <%= f.input :phone_number %>
+  <%= f.input :description %>
+  <%= f.submit "Update Information" %>
+<% end %>

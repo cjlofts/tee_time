@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
 
   has_many :golf_courses
 
+  has_many :games
+
+  has_many :invitations
+  has_many :invited_games, through: :invitations, source: :game
+
+  has_many :requests
+  has_many :requested_games, through: :requests, source: :game
+
   def full_name
     "#{first_name} #{last_name}".strip
   end

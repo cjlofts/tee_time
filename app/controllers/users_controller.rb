@@ -15,11 +15,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    #if current_user.update_attributes(user_params)
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to edit_user_path
+      flash[:notice] = "Profile update successfully!"
+    else
+      flash[:alert] = "Profile not updated"
+      render :edit
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email,
-                                  :password, :password_confirmation)
+                                  :password, :password_confirmation, :handicap, :age, :phone_number, :description)
   end
 
 end
