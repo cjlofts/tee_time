@@ -14,6 +14,7 @@ gem "bootstrap-sass"
 gem "quiet_assets"
 gem "simple_form"
 gem 'bcrypt', '~> 3.1.7'
+gem 'aasm'
 
 group :development, :test do
 

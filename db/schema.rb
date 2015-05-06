@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502170649) do
+ActiveRecord::Schema.define(version: 20150506011456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,14 @@ ActiveRecord::Schema.define(version: 20150502170649) do
     t.integer  "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
+    t.boolean  "owner"
   end
 
   add_index "game_players", ["game_id"], name: "index_game_players_on_game_id", using: :btree
   add_index "game_players", ["user_id"], name: "index_game_players_on_user_id", using: :btree
 
   create_table "games", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "golf_course_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 20150502170649) do
   end
 
   add_index "games", ["golf_course_id"], name: "index_games_on_golf_course_id", using: :btree
-  add_index "games", ["user_id"], name: "index_games_on_user_id", using: :btree
 
   create_table "golf_courses", force: :cascade do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150502170649) do
     t.integer  "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "confirmed"
   end
 
   add_index "invitations", ["game_id"], name: "index_invitations_on_game_id", using: :btree
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150502170649) do
     t.integer  "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "confirmed"
   end
 
   add_index "requests", ["game_id"], name: "index_requests_on_game_id", using: :btree
@@ -82,7 +84,6 @@ ActiveRecord::Schema.define(version: 20150502170649) do
   add_foreign_key "game_players", "games"
   add_foreign_key "game_players", "users"
   add_foreign_key "games", "golf_courses"
-  add_foreign_key "games", "users"
   add_foreign_key "golf_courses", "users"
   add_foreign_key "invitations", "games"
   add_foreign_key "invitations", "users"

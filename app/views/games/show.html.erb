@@ -2,16 +2,18 @@
 
 <p>Golf Course: <%= @game.golf_course.name %></p>
 <p>Date / Time: <%= @game.date %></p>
-<p>Game created by: <%= @game.user.full_name %></p>
+<p>Game created by: <%= @game.owner.full_name %></p>
 
 <%= link_to "Edit", edit_game_path(@game), class:"btn btn-primary" %>
 <%= link_to "Delete", game_path(@game), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
 
-<%= form_for @request, url: game_requests_path(@game) do |f| %>
-  <%= f.submit class:"btn btn-info" %>
+<% if @game.owner != current_user %>
+  <%= form_for @request, url: game_requests_path(@game) do |f| %>
+    <%= f.submit class:"btn btn-info" %>
+  <% end %>
 <% end %>
 
-<% if @game.user == current_user %>
+<% if @game.owner == current_user %>
   <hr>
   <%= simple_form_for @invitation, url: game_invitations_path(@game) do |f| %>
     <%= f.association :user, collection: User.order(:last_name), label_method: :full_name, prompt: "Choose a user to invite" %>

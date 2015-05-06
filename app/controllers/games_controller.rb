@@ -2,24 +2,12 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @games = current_user.games
+    @games = current_user.owned_games
     @invited_games = current_user.invited_games
     @requested_games = current_user.requested_games
     @all_games = Game.all
-
     @all_users_games = []
-
-    @games.each do |game|
-      @all_users_games.push(game)
-    end
-
-    @invited_games.each do |game|
-      @all_users_games.push(game)
-    end
-
-    @requested_games.each do |game|
-      @all_users_games.push(game)
-    end
+    
   end
 
   def new
@@ -33,8 +21,16 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = current_user.games.new(game_params)
-    if @game.save
+    ActiveRecord::Base.transaction do
+      @game = Game.create!(game_params)
+      @game_player = current_user.game_players.new
+      @game_player.game_id = @game.id
+      @game_player.owner = true
+      @game_player.status = "confirmed"
+      @game_player.save!
+    end
+
+    if @game_player.persisted?
       flash[:notice] = "Game created successfully!"
       redirect_to game_path(@game)
     else
@@ -72,7 +68,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:user_id, :golf_course_id, :date)
+    params.require(:game).permit(:golf_course_id, :date)
   end
-
 end
