@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
 
   def index
-    @new_requests = current_user.requested_users
+    @user_games = current_user.games
   end
 
   def show

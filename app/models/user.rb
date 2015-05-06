@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_many :requested_game_players, -> { where(status: 'requested') }, class_name: 'GamePlayer'
   has_many :requested_games, through: :requested_game_players, source: :game, class_name: 'Game'
 
-
   def full_name
     "#{first_name} #{last_name}".strip
   end

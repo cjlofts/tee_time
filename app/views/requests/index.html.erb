@@ -2,5 +2,15 @@
 
 <h3>New Requests</h3>
 
-<% @new_requests.each do |request| %>
+<% @user_games.each do |game| %>
+  <div>
+    <p><%= game.date %></p>
+    <p><%= game.golf_course.name %></p>
+    <% game.users_requesting_to_join.each do |user| %>
+      <div>
+        <p><%= user.full_name %></p>
+      </div>
+    <% end %>
+    <hr>
+  </div>
 <% end %>
