@@ -35,6 +35,33 @@ body {
   border: 1px solid black;
 }
 
+.btn-accept {
+  background-color: #44f907;
+  color: white;
+  border: 1px solid black;
+}
+
+.btn-accept:hover {
+  background-color: #31db0a;
+  color: white;
+}
+
+.btn-decline {
+  background-color: #30302e;
+  color: white;
+  border: 1px solid black;
+}
+
+.btn-decline:hover {
+  background-color: black;
+  color: white;
+}
+
+.info-text {
+  text-align: center;
+  font-weight: bold;
+}
+
 .mini-submenu{
   display:none;
   background-color: rgba(0, 0, 0, 0);
