@@ -4,19 +4,43 @@
 <p>Date / Time: <%= @game.date %></p>
 <p>Game created by: <%= @game.owner.full_name %></p>
 
-<%= link_to "Edit", edit_game_path(@game), class:"btn btn-primary" %>
-<%= link_to "Delete", game_path(@game), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
+<% if @game.owner == current_user %>
+  <div>
+    <%= link_to "Edit", edit_game_path(@game), class:"btn btn-primary" %>
+    <%= link_to "Delete", game_path(@game), method: :delete,
+        data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
+  </div>
+<% end %>
 
 <% if @game.owner != current_user %>
-  <%= form_for @request, url: game_requests_path(@game) do |f| %>
-    <%= f.submit class:"btn btn-info" %>
+  <% if current_user.invited(@game).count > 0 %>
+    <div class="btn btn-info">
+      <p>Already Invited</p>
+    </div>
+  <% elsif current_user.requested(@game).count > 0 %>
+    <div class="btn btn-info">
+      <p>Already Requested</p>
+    </div>
+  <% elsif current_user.already_playing(@game) %>
+    <div class="btn btn-info">
+      <p>Already Playing</p>
+    </div>
+  <% elsif current_user.already_declined(@game).count > 0 %>
+    <div class="btn btn-info">
+      <p>Request Already Declined</p>
+    </div>
+  <% else %>
+    <%= simple_form_for @request, url: game_requests_path(@game) do |f| %>
+      <%= f.submit "Send Request", class:"btn btn-info" %>
+    <% end %>
   <% end %>
 <% end %>
 
 <% if @game.owner == current_user %>
   <hr>
   <%= simple_form_for @invitation, url: game_invitations_path(@game) do |f| %>
-    <%= f.association :user, collection: User.order(:last_name), label_method: :full_name, prompt: "Choose a user to invite" %>
-    <%= f.submit class:"btn btn-info" %>
+    <% invitables = User.order(:last_name).where.not(id: @game.owner.id) %>
+    <%= f.association :user, collection: invitables, label_method: :full_name, prompt: "Choose a user to invite" %>
+    <%= f.submit "Send Invitation", class: "btn btn-info" %>
   <% end %>
 <% end %>

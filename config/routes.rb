@@ -6,8 +6,19 @@ Rails.application.routes.draw do
 
   resources :games
 
-  resources :requests
-  resources :invitations
+  resources :requests do
+    member do
+      put :accept
+      put :decline
+    end
+  end
+
+  resources :invitations do
+    member do
+      put :accept
+      put :decline
+    end
+  end
 
   resources :users
   resources :sessions, only: [:new, :create] do
@@ -16,8 +27,8 @@ Rails.application.routes.draw do
 
   resources :games, only: [:show] do
     resources :game_players
-    resources :requests, only: [:create, :destroy]
-    resources :invitations, only: [:create, :destroy]
+    resources :invitations
+    resources :requests
   end
 
 end

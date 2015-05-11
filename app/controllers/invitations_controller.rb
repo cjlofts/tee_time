@@ -1,28 +1,44 @@
 class InvitationsController < ApplicationController
 
-  def create
-    ActiveRecord::Base.transaction do
-      game = Game.find params[:game_id]
-      @invitation = game.invitations.create!(invitation_params)
-      @game_player = game.game_players.new(invitation_params)
-      @game_player.owner = false
-      @game_player.status = "invited"
-      @game_player.save!
-    end
+  def index
+    @invitations = current_user.invitations
+  end
 
-    if @game_player.persisted?
+  def decline
+    game_player = GamePlayer.find params[:id]
+    game_player.decline
+    if game_player.save
+      redirect_to invitations_path, notice: "Invitation Declined"
+    end
+  end
+
+  def accept
+    game_player = GamePlayer.find params[:id]
+    game_player.accept
+    if game_player.save
+      redirect_to invitations_path, notice: "Invitation Accpeted!"
+    end
+  end
+
+  def create
+    @game = Game.find params[:game_id]
+    @invitation = @game.game_players.new(invitation_params)
+    @invitation.owner = false
+    @invitation.status = "invited"
+
+    if @invitation.save
       flash[:notice] = "Invitation Sent!"
-      redirect_to games_path
+      redirect_to @game
     else
       flash[:alert] = "Invitation Not Sent"
-      render game_path
+      redirect_to @game
     end
   end
 
   private
 
   def invitation_params
-    params.require(:invitation).permit(:user_id)
+    params.require(:game_player).permit(:user_id)
   end
 
 end

@@ -1,1 +1,11 @@
+<h1>Requests New</h1>
 
+<% @joinable_games.each do |game| %>
+  <p><%= link_to "Game is on: ", game_path(game) %>
+  <p><%= game.golf_course.name %></p>
+  <p><%= game.owner.full_name %></p>
+  <p>User playing: <%= game.has_user?(current_user) %></p>
+  <p>Game Full: <%= game.game_full? %></p>
+  <p>Show Game: <%= game.joinable?(current_user) %>
+  <hr>
+<% end %>

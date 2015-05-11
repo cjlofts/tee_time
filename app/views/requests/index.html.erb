@@ -4,13 +4,19 @@
 
 <% @user_games.each do |game| %>
   <div>
-    <p><%= game.date %></p>
-    <p><%= game.golf_course.name %></p>
-    <% game.users_requesting_to_join.each do |user| %>
-      <div>
-        <p><%= user.full_name %></p>
-      </div>
-    <% end %>
+    <% if game.requesting_users.count > 0 %>
+      <p><%= game.date %></p>
+      <p><%= game.golf_course.name %></p>
+      <% game.requesting_users.each do |user| %>
+        <p><%= game.id %></p>
+        <div>
+          <p><%= link_to user.full_name, user_path(user) %></p>
+          <%= GamePlayer.for_game_and_user(game, user).status %>
+          <p><%= link_to "Accept", accept_request_path(GamePlayer.for_game_and_user(game, user).id), method: :put  %> |
+             <%= link_to "Decline", decline_request_path(GamePlayer.for_game_and_user(game, user).id), method: :put  %></p>
+        </div>
+      <% end %>
     <hr>
+    <% end %>
   </div>
 <% end %>

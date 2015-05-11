@@ -14,23 +14,93 @@
  *= require_self
  */
 
-.nav-left {
-  float: left;
-}
+body {
+  padding-top: 70px;
+  background-color: #f5f7ea;
+  }
 
-.nav-centre {
-  float: left;
+.page-header {
   text-align: center;
 }
 
-.nav-right {
-  float: right;
+.navbar {
+  background-color: black;
 }
 
-.move-left {
-  float:left;
+.game-container {
+  background-color: #a7f28a;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid black;
 }
 
-.move-right {
-  float: right;
+.mini-submenu{
+  display:none;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  padding: 9px;
+  /*position: relative;*/
+  width: 42px;
+
+}
+
+.mini-submenu:hover{
+  cursor: pointer;
+}
+
+.mini-submenu .icon-bar {
+  border-radius: 1px;
+  display: block;
+  height: 2px;
+  width: 22px;
+  margin-top: 3px;
+}
+
+.mini-submenu .icon-bar {
+  background-color: #000;
+}
+
+#slide-submenu{
+  background: rgba(0, 0, 0, 0.45);
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.the-side-bar {
+  position: fixed;
+  width: 180px;
+  top: 180px;
+}
+
+.list-group-item {
+  background-color: black;
+}
+
+a.list-group-item {
+  color: white;
+}
+
+a.list-group-item:hover {
+  color: #44f907;
+  background-color: black;
+}
+
+.list-group-item.active {
+  background-color: #228B22;
+  border-color: #228B22;
+}
+
+.list-group-item.active:hover {
+  background-color: #228B22;
+  border-color: #228B22;
+}
+
+.badge {
+  background-color: #44f907;
+  color: black;
 }

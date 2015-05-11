@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506011456) do
+ActiveRecord::Schema.define(version: 20150507011333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,28 +46,6 @@ ActiveRecord::Schema.define(version: 20150506011456) do
 
   add_index "golf_courses", ["user_id"], name: "index_golf_courses_on_user_id", using: :btree
 
-  create_table "invitations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "game_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "confirmed"
-  end
-
-  add_index "invitations", ["game_id"], name: "index_invitations_on_game_id", using: :btree
-  add_index "invitations", ["user_id"], name: "index_invitations_on_user_id", using: :btree
-
-  create_table "requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "game_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "confirmed"
-  end
-
-  add_index "requests", ["game_id"], name: "index_requests_on_game_id", using: :btree
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -85,8 +63,4 @@ ActiveRecord::Schema.define(version: 20150506011456) do
   add_foreign_key "game_players", "users"
   add_foreign_key "games", "golf_courses"
   add_foreign_key "golf_courses", "users"
-  add_foreign_key "invitations", "games"
-  add_foreign_key "invitations", "users"
-  add_foreign_key "requests", "games"
-  add_foreign_key "requests", "users"
 end

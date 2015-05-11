@@ -1,0 +1,30 @@
+<div class="row">
+	<!-- <div class="col-sm-4 col-md-3 sidebar"> -->
+  <div class="the-side-bar">
+    <div class="mini-submenu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="list-group">
+      <a href= "<%= new_game_path %>"class="list-group-item">
+          New game
+      </a>
+      <a href="<%= new_request_path %>" class="list-group-item">
+          <i class="fa fa-search"></i> Join a game
+      </a>
+      <a href="<%= requests_path %>" class="list-group-item">
+          <i class="fa fa-folder-open-o"></i> Requests <span class="badge"><%= current_user.pending_requests(current_user).count %></span>
+      </a>
+      <a href="<%= invitations_path %>" class="list-group-item">
+          <i class="fa fa-bar-chart-o"></i> Invitations <span class="badge"><%= current_user.invitations.count %></span>
+      </a>
+      <a href="#" class="list-group-item">
+          <i class="fa fa-user"></i> Lorem ipsum
+      </a>
+      <a href="#" class="list-group-item">
+          <i class="fa fa-envelope"></i> Lorem ipsum
+      </a>
+    </div>
+  </div>
+</div>

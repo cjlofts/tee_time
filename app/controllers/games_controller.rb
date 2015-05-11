@@ -7,7 +7,7 @@ class GamesController < ApplicationController
     @requested_games = current_user.requested_games
     @all_games = Game.all
     @all_users_games = []
-    
+
   end
 
   def new
@@ -16,18 +16,18 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find params[:id]
-    @request = @game.requests.new
-    @invitation = @game.invitations.new
+    @invitation = GamePlayer.new
+    @request = GamePlayer.new
   end
 
   def create
     ActiveRecord::Base.transaction do
-      @game = Game.create!(game_params)
+      @game = Game.create(game_params)
       @game_player = current_user.game_players.new
       @game_player.game_id = @game.id
       @game_player.owner = true
       @game_player.status = "confirmed"
-      @game_player.save!
+      @game_player.save
     end
 
     if @game_player.persisted?

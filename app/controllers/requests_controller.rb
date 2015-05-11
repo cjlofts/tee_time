@@ -1,26 +1,38 @@
 class RequestsController < ApplicationController
 
   def index
-    @user_games = current_user.games
+    @user_games = current_user.owned_games
   end
 
-  def show
+  def new
+    games = Game.all
+    @joinable_games = games.select { |game| game.joinable?(current_user) }
+  end
+
+  def decline
+    game_player = GamePlayer.find params[:id]
+    game_player.decline
+    if game_player.save
+      redirect_to requests_path
+    end
+  end
+
+  def accept
+    game_player = GamePlayer.find params[:id]
+    game_player.accept
+    if game_player.save
+      redirect_to requests_path
+    end
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      @game = Game.find params[:game_id]
-      @request = @game.requests.new
-      @request.user_id = current_user.id
-      @request.save!
-      @game_player = @game.game_players.new
-      @game_player.user_id = current_user.id
-      @game_player.owner = false
-      @game_player.status = "requested"
-      @game_player.save!
-    end
+    @game = Game.find params[:game_id]
+    @request = @game.game_players.new
+    @request.user_id = current_user.id
+    @request.owner = false
+    @request.status = "requested"
 
-    if @request.persisted?
+    if @request.save
       flash[:notice] = "Request Successful!"
       redirect_to games_path
     else

@@ -1,0 +1,14 @@
+<h2>Invitations Index Page</h2>
+
+<p>Invitations For the Following Games</p>
+
+<% @invitations.each do |invitation| %>
+  <p>Invited By: <%= link_to invitation.game.owner.full_name, invitation.game.owner %>
+  <p>Golf Course: <%= invitation.game.golf_course.name %>
+  <p>Date: <%= invitation.game.date %></p>
+  <p>
+    <%= link_to "Accept", accept_invitation_path(invitation), method: :put  %> |
+    <%= link_to "Decline", decline_invitation_path(invitation), method: :put  %>
+  </p>
+  <hr>
+<% end %>
