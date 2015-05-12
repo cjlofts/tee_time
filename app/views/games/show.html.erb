@@ -19,6 +19,10 @@
     </div>
   <% end %>
 
+  <div>
+    <div id="map" style='height: 400px; width: 400px;'></div>
+  </div>
+
   <% if @game.owner != current_user %>
     <% if current_user.invited(@game).count > 0 %>
       <div class="btn btn-info">
@@ -52,3 +56,14 @@
     <% end %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw generate_markers(@game.golf_course).to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+  });
+</script>

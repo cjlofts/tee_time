@@ -22,6 +22,10 @@ class GolfCoursesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @course }
+    end
   end
 
   def edit
@@ -50,7 +54,7 @@ class GolfCoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:golf_course).permit(:name)
+    params.require(:golf_course).permit(:name, :address)
   end
 
 end

@@ -15,6 +15,9 @@ gem "quiet_assets"
 gem "simple_form"
 gem 'bcrypt', '~> 3.1.7'
 gem 'aasm'
+gem 'gmaps4rails'
+gem 'geocoder'
+gem "underscore-rails"
 
 group :development, :test do
 
