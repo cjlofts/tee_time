@@ -18,6 +18,8 @@ gem 'aasm'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem "underscore-rails"
+gem "font-awesome-rails"
+gem "selectize-rails"
 
 group :development, :test do
 
@@ -26,5 +28,6 @@ group :development, :test do
   gem "hirb"
   gem "interactive_editor"
   gem "awesome_print"
+  gem 'letter_opener'
 
 end

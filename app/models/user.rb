@@ -47,8 +47,8 @@ class User < ActiveRecord::Base
     {:game_id => game.id, :status => "declined"})
   end
 
-  def pending_requests(user)
-    GamePlayer.where(game_id: user.owned_games).where(status: "requested")
+  def pending_requests
+    GamePlayer.where(game: owned_games, status: "requested")
   end
 
 end

@@ -28,4 +28,8 @@ class Game < ActiveRecord::Base
   def joinable?(user)
     !has_user?(user) && !game_full?
   end
+
+  def confirmed_to_play
+    game_players.where(status: "confirmed")
+  end
 end

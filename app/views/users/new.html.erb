@@ -6,3 +6,43 @@
   <%= f.input :password_confirmation %>
   <%= f.submit "Create Account" %>
 <% end %>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+        </div>
+        <div class="modal-body">
+          <h1>Sign Up</h1>
+          <%= form_for User.new do |f| %>
+
+
+          <div class="form-group">
+            <%= f.label :first_name %><br>
+            <%= f.text_field :first_name %>
+          </div>
+          <div class="form-group">
+            <%= f.label :last_name %><br>
+            <%= f.text_field :last_name %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %><br>
+            <%= f.text_field :email %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %><br>
+            <%= f.password_field :password %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %><br>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Sign Up", class: "btn btn-info" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

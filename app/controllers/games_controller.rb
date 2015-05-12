@@ -18,6 +18,7 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
     @invitation = GamePlayer.new
     @request = GamePlayer.new
+    @invitables = User.order(:last_name).where.not(id: @game.owner.id)
   end
 
   def create

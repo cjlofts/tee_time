@@ -11,16 +11,16 @@
           New game
       </a>
       <a href="<%= new_request_path %>" class="list-group-item">
-          <i class="fa fa-search"></i> Join a game
+          Join a game
       </a>
       <a href="<%= requests_path %>" class="list-group-item">
-          <i class="fa fa-folder-open-o"></i> Requests <span class="badge"><%= current_user.pending_requests(current_user).count %></span>
+          Requests <span class="badge"><%= current_user.pending_requests.count %></span>
       </a>
       <a href="<%= invitations_path %>" class="list-group-item">
-          <i class="fa fa-bar-chart-o"></i> Invitations <span class="badge"><%= current_user.invitations.count %></span>
+          Invitations <span class="badge"><%= current_user.invitations.count %></span>
       </a>
-      <a href="#" class="list-group-item">
-          <i class="fa fa-user"></i> Lorem ipsum
+      <a href="<%= games_path %>" class="list-group-item">
+          Games I've created
       </a>
       <a href="#" class="list-group-item">
           <i class="fa fa-envelope"></i> Lorem ipsum

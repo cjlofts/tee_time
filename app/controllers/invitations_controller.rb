@@ -8,6 +8,7 @@ class InvitationsController < ApplicationController
     game_player = GamePlayer.find params[:id]
     game_player.decline
     if game_player.save
+      InvitationsMailer.decline_invitation(game_player).deliver_now
       redirect_to invitations_path, notice: "Invitation Declined"
     end
   end
@@ -27,6 +28,8 @@ class InvitationsController < ApplicationController
     @invitation.status = "invited"
 
     if @invitation.save
+      InvitationsMailer.notify_invited_person(@invitation).deliver_now
+
       flash[:notice] = "Invitation Sent!"
       redirect_to @game
     else

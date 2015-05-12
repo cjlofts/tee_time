@@ -7,54 +7,102 @@
 </div>
 
 <div class="col-md-10">
-  <p>Golf Course: <%= @game.golf_course.name %></p>
-  <p>Date / Time: <%= @game.date %></p>
-  <p>Game created by: <%= @game.owner.full_name %></p>
-
-  <% if @game.owner == current_user %>
-    <div>
-      <%= link_to "Edit", edit_game_path(@game), class:"btn btn-primary" %>
-      <%= link_to "Delete", game_path(@game), method: :delete,
-          data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
+  <div class="col-md-6">
+    <div class="game-container col-md-11">
+      <p class="centred-text link-word">Details</p>
+      <p><span class="link-word">Tee Time: </span><%= formatted_date(@game.date) %> at <%= formatted_time(@game.date) %></p>
+      <p><span class="link-word">Course: </span><%= link_to @game.golf_course.name, @game %></p>
+      <p><span class="link-word">Organised by: </span><%= link_to @game.owner.full_name, @game.owner %></p>
     </div>
-  <% end %>
 
-  <div>
-    <div id="map" style='height: 400px; width: 400px;'></div>
-  </div>
+    <div class="game-container col-md-11">
+      <p class="centred-text link-word">Confirmed Players</p>
+      <ul>
+        <% @game.confirmed_to_play.each do |player| %>
+          <li class="col-md-6"><%= link_to player.user.full_name, player.user %></li>
+        <% end %>
+      </ul>
+    </div>
 
-  <% if @game.owner != current_user %>
-    <% if current_user.invited(@game).count > 0 %>
-      <div class="btn btn-info">
-        <p>Already Invited</p>
-      </div>
-    <% elsif current_user.requested(@game).count > 0 %>
-      <div class="btn btn-info">
-        <p>Already Requested</p>
-      </div>
-    <% elsif current_user.already_playing(@game) %>
-      <div class="btn btn-info">
-        <p>Already Playing</p>
-      </div>
-    <% elsif current_user.already_declined(@game).count > 0 %>
-      <div class="btn btn-info">
-        <p>Request Already Declined</p>
-      </div>
-    <% else %>
-      <%= simple_form_for @request, url: game_requests_path(@game) do |f| %>
-        <%= f.submit "Send Request", class:"btn btn-info" %>
+
+
+    <% if @game.owner != current_user %>
+      <% if current_user.invited(@game).count > 0 %>
+        <div class="col-md-11 game-container">
+          <p class="centred-text link-word">Join The Game!</p>
+          <div class="centred-text">
+            <div class="btn btn-warning">
+              Already Invited!
+            </div>
+          </div>
+        </div>
+      <% elsif current_user.requested(@game).count > 0 %>
+        <div class="col-md-11 game-container">
+          <p class="centred-text link-word">Join The Game!</p>
+          <div class="centred-text">
+            <div class="btn btn-warning">
+              Already Requested!
+            </div>
+          </div>
+        </div>
+      <% elsif current_user.already_playing(@game) %>
+        <div class="col-md-11 game-container">
+          <p class="centred-text link-word">Join The Game!</p>
+          <div class="centred-text">
+            <div class="btn btn-warning">
+              Already Playing!
+            </div>
+          </div>
+        </div>
+      <% elsif current_user.already_declined(@game).count > 0 %>
+        <div class="col-md-11 game-container">
+          <p class="centred-text link-word">Join The Game!</p>
+          <div class="centred-text">
+            <div class="btn btn-danger">
+              Request Has Already Been Declined
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-md-11 game-container">
+          <p class="centred-text link-word">Join The Game!</p>
+          <%= simple_form_for @request, url: game_requests_path(@game) do |f| %>
+            <div class="centred-text">
+              <%= f.submit "Send Request", class:"btn btn-warning" %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
-  <% end %>
 
-  <% if @game.owner == current_user %>
-    <hr>
-    <%= simple_form_for @invitation, url: game_invitations_path(@game) do |f| %>
-      <% invitables = User.order(:last_name).where.not(id: @game.owner.id) %>
-      <%= f.association :user, collection: invitables, label_method: :full_name, prompt: "Choose a user to invite" %>
-      <%= f.submit "Send Invitation", class: "btn btn-info" %>
+    <% if @game.owner == current_user %>
+      <div class="form-group col-md-11 game-container">
+        <p class="centred-text link-word">Invite someone to play!<p>
+        <%= simple_form_for @invitation, url: game_invitations_path(@game) do |f| %>
+          <%= f.association :user, collection: @invitables, label_method: :full_name, prompt: "Choose a user to invite", id: "category", class: "form-control", label: false %>
+          <br>
+          <div class="centred-text">
+            <%= f.submit "Send Invitation", class: "btn btn-warning" %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
+
+    <% if @game.owner == current_user %>
+      <div class="col-md-11 game-container">
+        <p class="centred-text link-word">Modify Game Details<p>
+        <div class="centred-text">
+          <%= link_to "Edit Game", edit_game_path(@game), class:"btn btn-primary" %>
+          <%= link_to "Delete Game", game_path(@game), method: :delete,
+              data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <div id="map" style='height: 400px; width: 400px;'></div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -64,6 +112,13 @@
       markers = handler.addMarkers(<%=raw generate_markers(@game.golf_course).to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
+      handler.getMap().setZoom(15)
     });
-  });
+
+  $("select#game_player_user_id").addClass('form-control');
+  $("select#game_player_user_id option").addClass('form-control');
+
+});
+
+
 </script>

@@ -10,6 +10,9 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-awesome
+ *= require selectize
+ *= require selectize.bootstrap3
  *= require_tree .
  *= require_self
  */
@@ -18,6 +21,22 @@ body {
   padding-top: 70px;
   background-color: #f5f7ea;
   }
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+
+.flag-icon {
+  margin-right: 8px;
+}
+
+.link-word {
+  font-weight: bold;
+}
 
 .page-header {
   text-align: center;
@@ -60,6 +79,14 @@ body {
 .info-text {
   text-align: center;
   font-weight: bold;
+}
+
+.centred-text {
+  text-align: center;
+}
+
+.underlined-text {
+  text-decoration: underline;
 }
 
 #map {
