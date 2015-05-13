@@ -2,12 +2,14 @@
 
 <h2><%= @course.name %></h2>
 
+<%= image_tag @course.golf_course_image.url(:large) %>
+
 <%= link_to "Edit", edit_golf_course_path(@course), class:"btn btn-primary"%>
 
 <%= link_to "Delete", golf_course_path(@course), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
 
 <div>
-  <div id="map" style='height: 400px; width: 400px;'></div>
+  <div class="map-and-image" style='height: 400px; width: 400px;'></div>
 </div>
 
 <script type="text/javascript">
@@ -17,6 +19,7 @@
       markers = handler.addMarkers(<%=raw generate_markers(@course).to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
+      handler.getMap().setZoom(15)
     });
   });
 </script>

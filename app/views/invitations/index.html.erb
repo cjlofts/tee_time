@@ -10,13 +10,21 @@
   <p>Invitations For the Following Games</p>
 
   <% @invitations.each do |invitation| %>
-    <p>Invited By: <%= link_to invitation.game.owner.full_name, invitation.game.owner %>
-    <p>Golf Course: <%= invitation.game.golf_course.name %>
-    <p>Date: <%= invitation.game.date %></p>
-    <p>
+  <div class="col-md-6">
+    <div class="game-container col-md-11">
+      <p class="centred-text link-word">Details</p>
+      <p><span class="link-word">Tee Time: </span><%= formatted_date(invitation.game.date) %> at <%= formatted_time(invitation.game.date) %></p>
+      <p><span class="link-word">Course: </span><%= link_to invitation.game.golf_course.name, invitation.game.golf_course %></p>
+      <p><span class="link-word">Invited By: </span><%= link_to invitation.game.owner.full_name, invitation.game.owner %></p>
+    </div>
+    <div>
       <%= link_to "Accept", accept_invitation_path(invitation), method: :put  %> |
       <%= link_to "Decline", decline_invitation_path(invitation), method: :put  %>
-    </p>
-    <hr>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div>
+      <%= image_tag invitation.game.golf_course.golf_course_image.url(:medium), class: "map-and-image" %>
+    </div>
   <% end %>
 </div>

@@ -54,7 +54,7 @@ class GolfCoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:golf_course).permit(:name, :address)
+    params.require(:golf_course).permit(:name, :address, :golf_course_image)
   end
 
 end

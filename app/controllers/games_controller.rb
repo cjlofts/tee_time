@@ -2,12 +2,15 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @games = current_user.owned_games
-    @invited_games = current_user.invited_games
-    @requested_games = current_user.requested_games
-    @all_games = Game.all
-    @all_users_games = []
+    @all_users_games = current_user.games
+  end
 
+  def created_by_me
+    @created_games = current_user.owned_games
+  end
+
+  def requested_by_me
+    @requested_games = current_user.requested_games
   end
 
   def new

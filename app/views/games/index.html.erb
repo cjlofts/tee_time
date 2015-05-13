@@ -7,75 +7,55 @@
 </div>
 
 <div class="col-md-10">
-  <div class=col-md-10>
-    <h3>Games I've Created</h3>
 
-    <% @games.each do |game| %>
-      <div class="game-container col-md-10">
-        <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
-          <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game , class: "link-word"%></p>
-      </div>
-    <% end %>
-  </div>
-
-  <div class=col-md-10>
-    <h3>Games I've been Invited To</h3>
-
-    <% @invited_games.each do |game| %>
-    <div class="game-container col-md-10">
-      <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
-        <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game , class: "link-word"%></p>
-    </div>
-    <% end %>
-  </div>
-
-  <div class=col-md-10>
-    <h3>Games I've Requested To Join</h3>
-
-    <% @requested_games.each do |game| %>
-    <div class="game-container col-md-10">
-      <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
-        <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game , class: "link-word"%></p>
-    </div>
-    <% end %>
-  </div>
-
-  <div class=col-md-10>
+  <div id="all-div" class="col-md-10">
     <h3>All My Games</h3>
 
     <% @all_users_games.each do |game| %>
     <div class="game-container col-md-10">
       <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
-        <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game , class: "link-word"%></p>
+        <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game.golf_course, class: "link-word"%></p>
     </div>
     <% end %>
   </div>
 
-  <div class=col-md-10>
-    <h3>All Games</h3>
-
-    <% @all_games.each do |game| %>
-    <div class="game-container col-md-10">
-      <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
-        <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game , class: "link-word"%></p>
-    </div>
-    <% end %>
-  </div>
 </div>
 
 <script>
-$(function(){
+$(document).ready(function(){
 
-	$('#slide-submenu').on('click',function() {
-        $(this).closest('.list-group').fadeOut('slide',function(){
-        	$('.mini-submenu').fadeIn();
+  // $('#all-games').on('click', function() {
+  //   $('#requested-div').hide();
+  //   $('#created-div').hide();
+  //   $('#all-div').show();
+  // });
+  //
+  // $('#created-by-me').on('click', function() {
+  //   $('#requested-div').hide();
+  //   $('#all-div').hide();
+  //   $('#created-div').show();
+  // });
+  //
+  // $('#games-requested').on('click', function() {
+  //   $('#all-div').hide();
+  //   $('#created-div').hide();
+  //   $('#requested-div').show();
+  // });
+
+  $(function(){
+
+  	$('#slide-submenu').on('click',function() {
+          $(this).closest('.list-group').fadeOut('slide',function(){
+          	$('.mini-submenu').fadeIn();
+          });
+
         });
 
-      });
+  	$('.mini-submenu').on('click',function(){
+          $(this).next('.list-group').toggle('slide');
+          $('.mini-submenu').hide();
+  	})
+  })
 
-	$('.mini-submenu').on('click',function(){
-        $(this).next('.list-group').toggle('slide');
-        $('.mini-submenu').hide();
-	})
-})
+});
 </script>

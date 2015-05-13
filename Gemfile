@@ -20,6 +20,9 @@ gem 'geocoder'
 gem "underscore-rails"
 gem "font-awesome-rails"
 gem "selectize-rails"
+gem 'carrierwave'
+gem "mini_magick"
+gem "fog"
 
 group :development, :test do
 

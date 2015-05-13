@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   resources :golf_courses
 
-  resources :games
+  resources :games do
+    # /games/created_by_me => games#created_by_me
+    get :created_by_me, on: :collection
+    get :requested_by_me, on: :collection
+  end
 
   resources :requests do
     member do

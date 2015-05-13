@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511232350) do
+ActiveRecord::Schema.define(version: 20150513013215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,12 @@ ActiveRecord::Schema.define(version: 20150511232350) do
   create_table "golf_courses", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "address"
     t.float    "longitude"
     t.float    "latitude"
+    t.string   "golf_course_image"
   end
 
   add_index "golf_courses", ["user_id"], name: "index_golf_courses_on_user_id", using: :btree
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150511232350) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "user_image"
   end
 
   add_foreign_key "game_players", "games"

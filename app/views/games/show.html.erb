@@ -11,7 +11,7 @@
     <div class="game-container col-md-11">
       <p class="centred-text link-word">Details</p>
       <p><span class="link-word">Tee Time: </span><%= formatted_date(@game.date) %> at <%= formatted_time(@game.date) %></p>
-      <p><span class="link-word">Course: </span><%= link_to @game.golf_course.name, @game %></p>
+      <p><span class="link-word">Course: </span><%= link_to @game.golf_course.name, @game.golf_course %></p>
       <p><span class="link-word">Organised by: </span><%= link_to @game.owner.full_name, @game.owner %></p>
     </div>
 
@@ -101,7 +101,7 @@
   </div>
 
   <div class="col-md-6">
-    <div id="map" style='height: 400px; width: 400px;'></div>
+    <div class="map-and-image" style='height: 400px; width: 400px;'></div>
   </div>
 </div>
 

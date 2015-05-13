@@ -10,20 +10,23 @@
       <a href= "<%= new_game_path %>"class="list-group-item">
           New game
       </a>
+      <a id="all-games" href="<%= games_path %>" class="list-group-item">
+          All my games
+      </a>
       <a href="<%= new_request_path %>" class="list-group-item">
           Join a game
       </a>
       <a href="<%= requests_path %>" class="list-group-item">
-          Requests <span class="badge"><%= current_user.pending_requests.count %></span>
+          New Requests <span class="badge"><%= current_user.pending_requests.count %></span>
       </a>
       <a href="<%= invitations_path %>" class="list-group-item">
-          Invitations <span class="badge"><%= current_user.invitations.count %></span>
+          New Invitations <span class="badge"><%= current_user.invitations.count %></span>
       </a>
-      <a href="<%= games_path %>" class="list-group-item">
-          Games I've created
+      <a id="created-by-me" href="<%= created_by_me_games_path %>" class="list-group-item">
+          Created by me
       </a>
-      <a href="#" class="list-group-item">
-          <i class="fa fa-envelope"></i> Lorem ipsum
+      <a id="games-requested" href="<%= requested_by_me_games_path %>" class="list-group-item">
+          Requested to join
       </a>
     </div>
   </div>

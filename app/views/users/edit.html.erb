@@ -1,5 +1,7 @@
 <h1>User Profile</h1>
 
+<%= image_tag @user.user_image.url(:medium) %>
+
 <%= simple_form_for @user do |f| %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
@@ -8,5 +10,6 @@
   <%= f.input :age %>
   <%= f.input :phone_number %>
   <%= f.input :description %>
+  <%= f.input :user_image %>
   <%= f.submit "Update Information" %>
 <% end %>

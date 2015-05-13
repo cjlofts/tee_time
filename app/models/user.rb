@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :password_digest, presence: true
 
+  mount_uploader :user_image, UserImageUploader
+
   has_many :golf_courses
 
   has_many :game_players

@@ -40,6 +40,7 @@ a:hover {
 
 .page-header {
   text-align: center;
+  border-bottom: none;
 }
 
 .navbar {
@@ -89,7 +90,7 @@ a:hover {
   text-decoration: underline;
 }
 
-#map {
+.map-and-image {
   border: 2px solid black;
   border-radius: 4px;
 }

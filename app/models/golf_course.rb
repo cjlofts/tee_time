@@ -7,4 +7,7 @@ class GolfCourse < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode
+
+  mount_uploader :golf_course_image, GolfCourseImageUploader
+
 end
