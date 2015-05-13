@@ -9,7 +9,7 @@
 <%= link_to "Delete", golf_course_path(@course), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
 
 <div>
-  <div class="map-and-image" style='height: 400px; width: 400px;'></div>
+  <div id="map" class="map-and-image" style='height: 400px; width: 400px;'></div>
 </div>
 
 <script type="text/javascript">
@@ -19,7 +19,7 @@
       markers = handler.addMarkers(<%=raw generate_markers(@course).to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(15)
+      handler.getMap().setZoom(12);
     });
   });
 </script>

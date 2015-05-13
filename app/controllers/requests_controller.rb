@@ -34,7 +34,7 @@ class RequestsController < ApplicationController
 
     if @request.save
       flash[:notice] = "Request Successful!"
-      redirect_to games_path
+      redirect_to new_request_path
     else
       flash[:notice] = "Request Unsuccessful"
       redirect_to game_path(@game)

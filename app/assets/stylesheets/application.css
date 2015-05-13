@@ -90,9 +90,24 @@ a:hover {
   text-decoration: underline;
 }
 
+.request-player {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
 .map-and-image {
   border: 2px solid black;
   border-radius: 4px;
+}
+
+.invitation-buttons {
+  color: white;
+  margin-top: 6px;
+}
+
+.invitation-buttons:hover {
+  color: white;
+  text-decoration: none;
 }
 
 .mini-submenu{

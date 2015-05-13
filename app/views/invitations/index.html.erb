@@ -10,21 +10,22 @@
   <p>Invitations For the Following Games</p>
 
   <% @invitations.each do |invitation| %>
-  <div class="col-md-6">
-    <div class="game-container col-md-11">
-      <p class="centred-text link-word">Details</p>
-      <p><span class="link-word">Tee Time: </span><%= formatted_date(invitation.game.date) %> at <%= formatted_time(invitation.game.date) %></p>
-      <p><span class="link-word">Course: </span><%= link_to invitation.game.golf_course.name, invitation.game.golf_course %></p>
-      <p><span class="link-word">Invited By: </span><%= link_to invitation.game.owner.full_name, invitation.game.owner %></p>
-    </div>
-    <div>
-      <%= link_to "Accept", accept_invitation_path(invitation), method: :put  %> |
-      <%= link_to "Decline", decline_invitation_path(invitation), method: :put  %>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div>
-      <%= image_tag invitation.game.golf_course.golf_course_image.url(:medium), class: "map-and-image" %>
+    <div class="col-md-6">
+      <div class="game-container col-md-12">
+        <div class="col-md-9">
+          <p><span class="flag-icon"><%= link_to fa_icon("flag"), invitation.game %></span><span class="link-word">Invited By: </span><%= link_to invitation.game.owner.full_name, invitation.game.owner %></p>
+          <p><span class="link-word">Tee Time: </span><%= formatted_date(invitation.game.date) %> at <%= formatted_time(invitation.game.date) %></p>
+          <p><span class="link-word">Course: </span><%= link_to invitation.game.golf_course.name, invitation.game.golf_course %></p>
+        </div>
+        <div class="col-md-3">
+          <div class="btn btn-warning invitation-buttons">
+            <%= link_to "Accept", accept_invitation_path(invitation), method: :put, class: "invitation-buttons" %>
+          </div>
+          <div class="btn btn-danger invitation-buttons">
+            <%= link_to "Decline", decline_invitation_path(invitation), method: :put, class: "invitation-buttons" %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

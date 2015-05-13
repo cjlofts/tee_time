@@ -101,7 +101,7 @@
   </div>
 
   <div class="col-md-6">
-    <div class="map-and-image" style='height: 400px; width: 400px;'></div>
+    <div id="map" class="map-and-image" style='height: 400px; width: 400px;'></div>
   </div>
 </div>
 
@@ -112,7 +112,7 @@
       markers = handler.addMarkers(<%=raw generate_markers(@game.golf_course).to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(15)
+      handler.getMap().setZoom(12);
     });
 
   $("select#game_player_user_id").addClass('form-control');

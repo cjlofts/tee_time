@@ -6,14 +6,19 @@
   <%= render "/layouts/sidebar" %>
 </div>
 
-<div class="col-md-10">
+<div class="col-md-9">
   <% @joinable_games.each do |game| %>
-    <p><%= link_to "Game is on: ", game_path(game) %>
-    <p><%= game.golf_course.name %></p>
-    <p><%= game.owner.full_name %></p>
-    <p>User playing: <%= game.has_user?(current_user) %></p>
-    <p>Game Full: <%= game.game_full? %></p>
-    <p>Show Game: <%= game.joinable?(current_user) %>
-    <hr>
+  <div class="col-md-4">
+    <div class="game-container col-md-12">
+        <p><span class="flag-icon"><%= link_to fa_icon("flag"), game %></span><span class="link-word">Created By: </span><%= link_to game.owner.full_name, game.owner %></p>
+        <p></span><span class="link-word">Tee Time: </span><%= formatted_date(game.date) %> at <%= formatted_time(game.date) %></p>
+        <p><span class="link-word">Course: </span><%= link_to game.golf_course.name, game.golf_course %></p>
+        <%= simple_form_for GamePlayer.new, url: game_requests_path(game) do |f| %>
+          <div class="centred-text">
+            <%= f.submit "Send Request", class:"btn btn-warning" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
   <% end %>
 </div>
