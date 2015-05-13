@@ -16,4 +16,12 @@ class InvitationsMailer < ApplicationMailer
     mail(to: @recipient.email, subject: "Unavailable to play golf")
   end
 
+  def accept_invitation(invite)
+    @recipient = invite.game.owner
+    @game = invite.game
+    @sender = invite.user
+    @course = @game.golf_course.name
+    mail(to: @recipient.email, subject: "Invitation Accepted")
+  end
+
 end

@@ -1,0 +1,10 @@
+<p>Hello <%= @recipient.first_name %>,</p>
+<p><%= @sender.full_name %> has accepted your request and you are confirmed to play in the following game:</p>
+<p>Date: <%= @game.date %></p>
+<p>Golf Course: <%= @course %></p>
+<p>Currently, the confirmed players are:</p>
+<% @game.confirmed_to_play.each do |player| %>
+  <p>. <%= player.user.full_name %></p>
+<% end %>
+<p>Best Regards,</p>
+<p>The TeeTime Team</p>

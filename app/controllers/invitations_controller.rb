@@ -17,6 +17,7 @@ class InvitationsController < ApplicationController
     game_player = GamePlayer.find params[:id]
     game_player.accept
     if game_player.save
+      InvitationsMailer.accept_invitation(game_player).deliver_now
       redirect_to invitations_path, notice: "Invitation Accpeted!"
     end
   end

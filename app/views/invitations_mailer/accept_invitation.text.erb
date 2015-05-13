@@ -1,0 +1,13 @@
+Hello <%= @recipient.first_name %>,
+
+<%= @sender.full_name %> has accepted your invitation and is confirmed to play in the following game:
+
+Date: <%= @game.date %>
+Golf Course: <%= @course %>
+
+<% @game.confirmed_to_play.each do |player| %>
+  .<%= player.user.full_name %>
+<% end %>
+
+Best Regards,
+The TeeTime Team
