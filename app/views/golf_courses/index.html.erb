@@ -1,7 +1,11 @@
-<h1>Golf Course Index</h1>
+<div class="container">
+  <h1>Golf Course Index</h1>
+  <%= link_to "New Golf Course", new_golf_course_path %>
+  <br><br>
 
-<% @courses.each do |course| %>
-  <li><%= link_to course.name, course %></li>
-<% end %>
+  <% @courses.each do |course| %>
 
-<%= link_to "New Golf Course", new_golf_course_path %>
+    <li><%= link_to course.name, course %></li>
+  <% end %>
+
+</div>

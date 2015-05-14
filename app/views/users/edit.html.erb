@@ -1,4 +1,4 @@
-<h1>User Profile</h1>
+<h2>Edit</h2>
 
 <%= image_tag @user.user_image.url(:medium) %>
 
@@ -11,5 +11,7 @@
   <%= f.input :phone_number %>
   <%= f.input :description %>
   <%= f.input :user_image %>
+  <%= f.input :min_handicap %>
+  <%= f.input :max_handicap %>
   <%= f.submit "Update Information" %>
 <% end %>

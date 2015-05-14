@@ -21,7 +21,8 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
     @invitation = GamePlayer.new
     @request = GamePlayer.new
-    @invitables = User.order(:last_name).where.not(id: @game.owner.id)
+    @invitables = User.order(:last_name).where.not(id: @game.owner.id).
+      select { |filtered_user| @game.handicap_matches?(@game.owner, filtered_user) }
   end
 
   def create

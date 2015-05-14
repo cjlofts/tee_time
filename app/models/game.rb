@@ -25,8 +25,15 @@ class Game < ActiveRecord::Base
     game_players.where("user_id = :user_id", {:user_id => user.id}).any?
   end
 
-  def joinable?(user)
-    !has_user?(user) && !game_full?
+  def handicap_matches?(current_user, game_owner)
+    (current_user.handicap > game_owner.min_handicap && current_user.handicap < game_owner.max_handicap) &&
+    (game_owner.handicap > current_user.min_handicap && game_owner.handicap < current_user.max_handicap)
+  end
+
+  def joinable?(current_user)
+    !has_user?(current_user) &&
+    !game_full? &&
+    handicap_matches?(current_user, owner)
   end
 
   def confirmed_to_play
