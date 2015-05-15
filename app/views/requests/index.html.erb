@@ -15,7 +15,6 @@
         <div class="col-md-12 game-container">
           <p><span class="flag-icon"><%= link_to fa_icon("flag"), game %></span><span class="link-word">Tee Time: </span><%= formatted_date(game.date) %> at <%= formatted_time(game.date) %></p>
           <p><span class="link-word">Course: </span><%= link_to game.golf_course.name, game.golf_course %></p>
-          <p><span class="link-word">Organised by: </span><%= link_to game.owner.full_name, game.owner %></p>
 
           <p class="link-word centered-text">Requests From The Following Users:</p>
           <% game.requesting_users.each do |user| %>

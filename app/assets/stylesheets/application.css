@@ -52,6 +52,10 @@ a:hover {
   font-weight: bold;
 }
 
+.golf-show-div {
+  margin-bottom: 300px;
+}
+
 .centered-text {
   text-align: center;
 }
@@ -143,6 +147,9 @@ a:hover {
 .modal-content {
   width: 400px;
   margin: 0 auto;
+}
+
+.center-user-model {
 }
 
 .underlined-text {

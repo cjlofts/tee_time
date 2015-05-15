@@ -12,7 +12,7 @@
       <p class="centred-text link-word">Details</p>
       <p><span class="link-word">Tee Time: </span><%= formatted_date(@game.date) %> at <%= formatted_time(@game.date) %></p>
       <p><span class="link-word">Course: </span><%= link_to @game.golf_course.name, @game.golf_course %></p>
-      <p><span class="link-word">Organised by: </span><%= link_to @game.owner.full_name, @game.owner %></p>
+      <p><span class="link-word">Organised by: </span><%= link_to @game.owner.full_name, "javascript:void(0)", data: {toggle: "modal", target: "#userModal"} %></p>
     </div>
 
     <div class="game-container col-md-11">
@@ -104,6 +104,8 @@
     <div id="map" class="map-and-image" style='height: 400px; width: 400px;'></div>
   </div>
 </div>
+
+<%= render "users/show" %>
 
 <script type="text/javascript">
   $(document).ready(function(){

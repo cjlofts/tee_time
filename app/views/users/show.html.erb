@@ -1,7 +1,27 @@
-<h2><%= @user.first_name %> <%= @user.last_name %></h2>
+<div class="container">
+  <h3><%= @user.full_name %></h3>
 
-<%= image_tag @user.user_image.url(:medium) %>
+  <div class="col-md-3">
+    <div class="user-picture-div">
+      <%= image_tag @user.user_image.url(:medium), class: "map-and-image user-picture-div" %>
+    </div>
+  </div>
 
-<p>Handicap: <%= @user.handicap%></p>
-<p>Age: <%= @user.age %></p>
-<p>Description: <%= @user.description %></p>
+  <div class="col-md-8">
+    <div class="col-md-6">
+      <div class="game-container">
+        <p><span  class="link-word">Handicap: </span><%= @user.handicap%></p>
+        <p><span  class="link-word">Age: </span><%= @user.age %></p>
+        <p><span  class="link-word">Description: </span><%= @user.description %></p>
+        <p><span  class="link-word">Email: </span><%= @user.email%></p>
+        <p><span  class="link-word">Phone Number: </span><%= @user.phone_number%></p>
+        <p><span  class="link-word">Min Handicap: </span><%= @user.min_handicap %></p>
+        <p><span  class="link-word">Max Handicap: </span><%= @user.max_handicap %></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="game-container">
+      </div>
+    </div>
+  </div>
+</div>
