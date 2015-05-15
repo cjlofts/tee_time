@@ -1,13 +1,13 @@
-<div class="page-header">
-  <h1>Requests Index Page</h1>
-</div>
-
 <div class="col-md-2">
   <%= render "/layouts/sidebar" %>
 </div>
 
 <div class="col-md-5">
+  <br>
+  <br>
   <h3>New Requests</h3>
+  <br>
+  <br>
 
   <% @user_games.each do |game| %>
     <% if game.requesting_users.count > 0 %>

@@ -1,5 +1,4 @@
 class GolfCoursesController < ApplicationController
-  before_action :authenticate_user!
   before_action :find_course, only: [:show, :edit, :update, :destroy]
 
   def index

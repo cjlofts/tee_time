@@ -22,12 +22,32 @@ body {
   background-color: #f5f7ea;
   }
 
-  .map-div {
-    width: 700px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.map-div {
+  width: 700px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-map {
+  width: 502px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-list {
+  margin-top: 100px;
+  color: white;
+  font-size: 1.5em;
+}
+
+.landing-title {
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 0;
+}
 
 a {
   color: black;
@@ -65,12 +85,30 @@ a:hover {
   border-bottom: none;
 }
 
+.golf-course-image {
+  height: 100vh;
+}
+
 .landing-page {
-  background: url('/assets/landing_page_image.jpg') no-repeat center center scroll;
+  /*background: url('/assets/landing_page_image.jpg') no-repeat center center scroll;*/
   height: 100vh;
   background-size: cover;
 }
 
+.black-bar {
+  height: 95vh;
+  background-color: black;
+  width: 100%;
+}
+
+.user-modal-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+/*.modal-game-container {
+  margin: 0 auto;
+}*/
 
 .game-container {
   background-color: #a7f28a;

@@ -23,6 +23,7 @@ gem "selectize-rails"
 gem 'carrierwave'
 gem "mini_magick"
 gem "fog"
+gem 'jquery-turbolinks'
 
 group :development, :test do
 

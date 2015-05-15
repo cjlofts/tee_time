@@ -1,4 +1,37 @@
-<div class="landing-page">
-<%#= image_tag "landing_page_image.jpg" %>
-  <!-- <h1>Hello World</h1> -->
-</div>
+<div class="parallax-window golf-course-image">
+  <div class="landing-page">
+  </div>
+  <div class="black-bar">
+    <h1 class="landing-title">Find or organise a game of golf!</h1>
+    <div class="col-md-6">
+      <div class="landing-map">
+        <div id="map" class="map-and-image" style='height: 350px; width: 500px;'></div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <ul class="landing-list">
+        <li>Choose from many of Vancouver’s best golf courses</li>
+        <li>Players of all abilities looking to play golf</li>
+        <li>Book a Tee Time and invite others to play or join upcoming games</li>
+        <li>Find players looking for casual games or players looking to improve their handicap</li>
+      </ul>
+    </div>
+  </div>
+<div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw generate_markers(@courses).to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(9);
+
+    });
+  });
+
+  $(document).on('ready page:load', function () {
+    $('.parallax-window').parallax({ imageSrc: "assets/landing_page_image.jpg" });
+  });
+</script>
