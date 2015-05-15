@@ -1,5 +1,19 @@
-<%= simple_form_for @game, html: {class: "form-horizontal"} do |f| %>
-  <%= f.input :date %>
-  <%= f.association :golf_course, collection: GolfCourse.order(:name), prompt: "Choose a Course" %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<div class="col-md-offset-2 col-md-6 game-container">
+  <div class="form-group">
+    <%= form_for @game do |f| %>
+      <div class="form-inline">
+        <%= f.label :date %>
+        <%= f.datetime_select :date, {:minute_step => 10}, {class: "form-control"} %>
+      <div>
+      <br>
+      <div>
+        <%= f.label :golf_course %>
+        <%= f.collection_select :golf_course_id, GolfCourse.order(:name),:id, :name, {:prompt => "Choose a Course"}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="button-to-center">
+        <%= f.submit class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+<div>

@@ -1,17 +1,65 @@
-<h2>Edit</h2>
+<div class="container">
+  <h3>Update your user profile!</h3>
 
-<%= image_tag @user.user_image.url(:medium) %>
+  <div class="col-md-3">
+    <div class="user-picture-div">
+      <%= image_tag @user.user_image.url(:medium), class: "map-and-image user-picture-div" %>
+    </div>
 
-<%= simple_form_for @user do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :email %>
-  <%= f.input :handicap %>
-  <%= f.input :age %>
-  <%= f.input :phone_number %>
-  <%= f.input :description %>
-  <%= f.input :user_image %>
-  <%= f.input :min_handicap %>
-  <%= f.input :max_handicap %>
-  <%= f.submit "Update Information" %>
-<% end %>
+    <%= form_for @user do |f| %>
+      <%= f.file_field :user_image %>
+      <div class="photo-button">
+        <%= f.submit "Update Photo", class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-9 profile-information">
+    <div class="form-group">
+      <%= form_for @user do |f| %>
+        <div class="col-md-5">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: "form-control" %>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: "form-control" %>
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "form-control" %>
+          <div>
+            <div class="col-md-6">
+              <%= f.label :handicap %>
+              <%= f.number_field :handicap, class: "form-control" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :age %>
+              <%= f.number_field :age, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <%= f.label :phone_number %>
+          <%= f.text_field :phone_number, class: "form-control", placeholder: "Optional" %>
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control", placeholder: "Fill in your golf experience!" %>
+          <div>
+            <div class="col-md-6">
+              <%= f.label :min_handicap %>
+              <%= f.number_field :min_handicap, class: "form-control" %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :max_handicap %>
+              <%= f.number_field :max_handicap, class: "form-control" %>
+            </div>
+          </div>
+          <div class="profile-button">
+            <%= f.submit "Update Information", class: "btn btn-warning" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-5 ">
+      <br>
+      <p class="link-word">Fill in the Min & Max Handicap to specify which games/players are available to you!</p>
+    </div>
+  </div>
+
+</div>

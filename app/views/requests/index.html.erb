@@ -17,7 +17,7 @@
           <p><span class="link-word">Course: </span><%= link_to game.golf_course.name, game.golf_course %></p>
           <p><span class="link-word">Organised by: </span><%= link_to game.owner.full_name, game.owner %></p>
 
-          <p class="link-word">Requests From The Following Users:</p>
+          <p class="link-word centered-text">Requests From The Following Users:</p>
           <% game.requesting_users.each do |user| %>
             <div class="col-md-6">
               <p class="request-player"><%= link_to user.full_name, user_path(user) %></p>

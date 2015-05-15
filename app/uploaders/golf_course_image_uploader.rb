@@ -36,6 +36,10 @@ class GolfCourseImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [50, 50]
   end
 
+  version :small do
+    process :resize_to_fit => [125, 125]
+  end
+
   version :medium do
     process :resize_to_fit => [200, 200]
   end

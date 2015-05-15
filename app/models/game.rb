@@ -30,6 +30,14 @@ class Game < ActiveRecord::Base
     (game_owner.handicap > current_user.min_handicap && game_owner.handicap < current_user.max_handicap)
   end
 
+#   def self.joinable_games
+#     query=<<SQL
+#         select id from games;
+# SQL
+#     ids = connection.execute(query)
+#     Game.find(ids)
+#   end
+
   def joinable?(current_user)
     !has_user?(current_user) &&
     !game_full? &&

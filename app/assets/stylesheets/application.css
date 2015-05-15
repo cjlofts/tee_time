@@ -18,8 +18,15 @@
  */
 
 body {
-  padding-top: 70px;
+  padding-top: 50px;
   background-color: #f5f7ea;
+  }
+
+  .map-div {
+    width: 700px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 a {
@@ -34,8 +41,19 @@ a:hover {
   margin-right: 8px;
 }
 
+.all-courses {
+  height: 100px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .link-word {
   font-weight: bold;
+}
+
+.centered-text {
+  text-align: center;
 }
 
 .page-header {
@@ -43,9 +61,12 @@ a:hover {
   border-bottom: none;
 }
 
-.navbar {
-  background-color: black;
+.landing-page {
+  background: url('/assets/landing_page_image.jpg') no-repeat center center scroll;
+  height: 100vh;
+  background-size: cover;
 }
+
 
 .game-container {
   background-color: #a7f28a;
@@ -84,6 +105,44 @@ a:hover {
 
 .centred-text {
   text-align: center;
+}
+
+.button-to-center {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.profile-button {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.user-picture-div {
+  max-width: 260px;
+}
+
+.photo-button {
+  margin-top: 10px;
+}
+
+.profile-information {
+  border-bottom: 5px solid black;
+}
+
+.center-button {
+  width: 60px;
+  margin: 0 auto;
+}
+
+.form-div {
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 15px;
+}
+
+.modal-content {
+  width: 400px;
+  margin: 0 auto;
 }
 
 .underlined-text {
@@ -145,7 +204,6 @@ a:hover {
   cursor: pointer;
 }
 
-
 .the-side-bar {
   position: fixed;
   width: 180px;
@@ -178,4 +236,9 @@ a.list-group-item:hover {
 .badge {
   background-color: #44f907;
   color: black;
+}
+
+.navbar {
+  background-color: black;
+  border-bottom: none;
 }
