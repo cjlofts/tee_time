@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :password_digest, presence: true
+  validates :handicap, numericality: true
+  validates :min_handicap, numericality: true
+  validates :max_handicap, numericality: true
 
   mount_uploader :user_image, UserImageUploader
 
