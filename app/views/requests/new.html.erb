@@ -4,13 +4,11 @@
 
 <div class="col-md-9">
   <br>
-  <br>
-  <h3>Make a request</h3>
-  <br>
+  <h4>Make a request!</h4>
   <br>
   <% @joinable_games.each do |game| %>
   <div class="col-md-4">
-    <div class="game-container col-md-12">
+    <div class="request-div game-container col-md-12">
         <p><span class="flag-icon"><%= link_to fa_icon("flag"), game %></span><span class="link-word">Created By: </span><%= link_to game.owner.full_name, game.owner %></p>
         <p></span><span class="link-word">Tee Time: </span><%= formatted_date(game.date) %> at <%= formatted_time(game.date) %></p>
         <p><span class="link-word">Course: </span><%= link_to game.golf_course.name, game.golf_course %></p>
