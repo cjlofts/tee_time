@@ -24,6 +24,8 @@ gem 'carrierwave'
 gem "mini_magick"
 gem "fog"
 gem 'jquery-turbolinks'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 group :development, :test do
 

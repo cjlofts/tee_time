@@ -13,6 +13,7 @@
  *= require font-awesome
  *= require selectize
  *= require selectize.bootstrap3
+ *= require fullcalendar
  *= require_tree .
  *= require_self
  */
@@ -93,6 +94,10 @@ a:hover {
   /*background: url('/assets/landing_page_image.jpg') no-repeat center center scroll;*/
   height: 100vh;
   background-size: cover;
+}
+
+.request-div {
+  height: 170px;
 }
 
 .black-bar {
@@ -286,4 +291,59 @@ a.list-group-item:hover {
 .navbar {
   background-color: black;
   border-bottom: none;
+}
+
+#calendar {
+  background-color: white;
+  border-radius: 6px;
+  padding: 12px;
+  border: 1px solid black;
+}
+
+.fc-day-grid-event .fc-content {
+	white-space:normal;
+	}
+
+.tooltipevent {
+  width: 200px;
+  text-align: center;
+  position:absolute;
+  z-index:10001;
+  border-radius: 12px;
+  background-color: #44f907;
+  color: black;
+  border: 1px solid black;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.fc-day-grid-event {
+  width: 65px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.orange-flag {
+  color: orange;
+}
+
+.calendar-flag {
+  font-size: 1.3em;
+}
+
+.green-flag {
+  color: #44f907;
+}
+
+.black-badge {
+  background-color: black;
+}
+
+.text-to-right {
+  float: right;
+}
+
+.centered-div {
+  
 }

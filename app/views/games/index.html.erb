@@ -3,59 +3,68 @@
 </div>
 
 <div class="col-md-10">
-
   <div id="all-div" class="col-md-10">
     <br>
     <br>
-    <h3>All My Games</h3>
-    <br>
-    <br>
+    <p class="calendar-flag"><span class="badge black-badge"><span class="fa fa-flag calendar-flag green-flag"></span>
+    </span> = Games I've created<span class="text-to-right"><span class="badge black-badge">
+      <span class="fa fa-flag calendar-flag orange-flag"></span>
+      </span> = Games I've been invited to or requested to join</span></p>
 
-    <% @all_users_games.each do |game| %>
-    <div class="game-container col-md-10">
-      <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
-        <%= formatted_time(game.date) %> to be played at <%= link_to game.golf_course.name, game.golf_course, class: "link-word"%></p>
+    <div class="game-container">
+      <div id='calendar'>
+      </div>
     </div>
-    <% end %>
   </div>
-
 </div>
 
 <script>
 $(document).ready(function(){
 
-  // $('#all-games').on('click', function() {
-  //   $('#requested-div').hide();
-  //   $('#created-div').hide();
-  //   $('#all-div').show();
-  // });
-  //
-  // $('#created-by-me').on('click', function() {
-  //   $('#requested-div').hide();
-  //   $('#all-div').hide();
-  //   $('#created-div').show();
-  // });
-  //
-  // $('#games-requested').on('click', function() {
-  //   $('#all-div').hide();
-  //   $('#created-div').hide();
-  //   $('#requested-div').show();
-  // });
+  $("#calendar").fullCalendar({
+    events: [
+      <% @all_users_games.each do |game| %>
+      {
+        description : '<%= game.golf_course.name %>',
+        start : '<%= game.date %>',
+        id    : '<%= game.id %>',
+        owner_id : '<%= game.owner.id %>'
+      },
+      <% end %>
+    ],
 
-  $(function(){
+    eventRender: function(event, element) {
+      $(element).attr("href", "/games/" + event.id);
+       if ( '<%= current_user.id %>' === event.owner_id ) {
+         $(element).html('<i class="fa fa-flag calendar-flag"></i>');
+       } else {
+         $(element).html('<i class="fa fa-flag orange-flag calendar-flag"></i>');
+       }
+    },
 
-  	$('#slide-submenu').on('click',function() {
-          $(this).closest('.list-group').fadeOut('slide',function(){
-          	$('.mini-submenu').fadeIn();
-          });
+    eventMouseover: function(calEvent, jsEvent) {
+      var tooltip = '<div class="tooltipevent">' + calEvent.description + '</div>';
+      $("body").append(tooltip);
+      $(this).mouseover(function(e) {
+          $(this).css('z-index', 10000);
+          $('.tooltipevent').fadeIn('500');
+          $('.tooltipevent').fadeTo('10', 1.9);
+      }).mousemove(function(e) {
+          $('.tooltipevent').css('top', e.pageY + 10);
+          $('.tooltipevent').css('left', e.pageX + 20);
+      });
+    },
 
-        });
+    eventMouseout: function(calEvent, jsEvent) {
+      $(this).css('z-index', 8);
+      $('.tooltipevent').remove();
+    },
 
-  	$('.mini-submenu').on('click',function(){
-          $(this).next('.list-group').toggle('slide');
-          $('.mini-submenu').hide();
-  	})
-  })
+    eventColor: 'black',
+    eventTextColor: '#44f907',
+    height: 450
+    });
+
 
 });
 </script>

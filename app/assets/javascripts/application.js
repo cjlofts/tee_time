@@ -14,7 +14,8 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require selectize
-//= require turbolinks
+//= require moment
+//= require fullcalendar
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-sprockets

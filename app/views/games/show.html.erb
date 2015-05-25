@@ -112,7 +112,12 @@
   $(document).ready(function(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(<%=raw generate_markers(@game.golf_course).to_json %>);
+      markers = handler.addMarkers([
+          {
+            "lat": <%= @game.golf_course.latitude %>,
+            "lng": <%= @game.golf_course.longitude %>,
+          }
+        ]);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
       handler.getMap().setZoom(12);

@@ -3,13 +3,10 @@
 </div>
 
 <div class="col-md-10">
-  <div id="created-div" class="col-md-10">
-    <br>
-    <br>
-    <h3>Games I've Created</h3>
-    <br>
-    <br>
-    
+  <br>
+  <h4>Games I've created</h4>
+  <br>
+  <div id="created-div" class="col-md-10 col-md-offset-1">
     <% @created_games.each do |game| %>
       <div class="game-container col-md-10">
         <p><span class="flag-icon"><%= link_to fa_icon("flag 2x"), game %></span>on <%= formatted_date(game.date) %> at
