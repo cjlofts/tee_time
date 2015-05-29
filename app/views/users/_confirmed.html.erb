@@ -1,0 +1,28 @@
+<div class="modal fade" id="#playerModal-<%= player.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title centered-text" id="myModalLabel"><%= player.full_name %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="user-modal-container">
+
+          <div class="text-center">
+            <%= image_tag player.user_image.url(:medium), class: "map-and-image" %>
+          </div>
+          <br>
+
+          <div class="game-container modal-game-container">
+            <p><span  class="link-word">Handicap: </span><%= player.handicap%></p>
+            <p><span  class="link-word">Age: </span><%= player.age %></p>
+            <p><span  class="link-word">Description: </span><%= player.description %></p>
+            <p><span  class="link-word">Email: </span><%= player.email%></p>
+            <p><span  class="link-word">Min Handicap: </span><%= player.min_handicap %></p>
+            <p><span  class="link-word">Max Handicap: </span><%= player.max_handicap %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
