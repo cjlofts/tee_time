@@ -19,7 +19,9 @@
           <li><%= link_to "Logout", sessions_path("current"), method: "delete" %></li>
         <% else %>
           <li><%= link_to "Sign Up", new_user_path %></li>
-          <li><%= link_to "Log In", "javascript:void(0)", data: {toggle: "modal", target: "#signInModal"} %></li>
+          <li>
+            <a data-toggle='modal' data-target="#signInModal" href="">Log In</a>
+          </li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

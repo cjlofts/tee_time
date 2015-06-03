@@ -35,4 +35,6 @@ Rails.application.routes.draw do
     resources :requests
   end
 
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
 end

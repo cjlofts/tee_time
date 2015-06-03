@@ -27,6 +27,10 @@ gem 'jquery-turbolinks'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+gem 'delayed_job_active_record'
+gem "delayed_job_web"
+gem 'daemons'
+
 group :development, :test do
 
   gem 'byebug'

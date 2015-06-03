@@ -13,7 +13,7 @@ class RequestsController < ApplicationController
     game_player = GamePlayer.find params[:id]
     game_player.decline
     if game_player.save
-      RequestsMailer.decline_request(game_player).deliver_now
+      RequestsMailer.delay().decline_request(game_player)
       flash[:notice] = "Request Declined"
       redirect_to requests_path
     else
@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
     game_player = GamePlayer.find params[:id]
     game_player.accept
     if game_player.save
-      RequestsMailer.accept_request(game_player).deliver_now
+      RequestsMailer.delay().accept_request(game_player)
       flash[:notice] = "Request Accepted!"
       redirect_to requests_path
     else
@@ -43,7 +43,7 @@ class RequestsController < ApplicationController
     @request.status = "requested"
 
     if @request.save
-      RequestsMailer.notify_requested_person(@request).deliver_now
+      RequestsMailer.delay().notify_requested_person(@request)
       flash[:notice] = "Request Successful!"
       redirect_to new_request_path
     else
