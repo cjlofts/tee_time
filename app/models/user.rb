@@ -55,5 +55,4 @@ class User < ActiveRecord::Base
   def pending_requests
     GamePlayer.where(game: owned_games, status: "requested")
   end
-
 end
